@@ -1,0 +1,8 @@
+.env
+.env.*
+*.env
+.coverage
+htmlcov
+static/
+__pycache__/
+.ruff_cache
