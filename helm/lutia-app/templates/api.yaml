@@ -1,0 +1,111 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-api
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: {{ .Values.api.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-api
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-api
+    spec:
+      containers:
+        - name: api
+          image: "{{ .Values.api.image.repository }}:{{ .Values.api.image.tag }}"
+          ports:
+            - containerPort: 8000
+          env:
+            - name: AKER_DEBUG
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-api-cm
+                  key: debug
+            - name: AKER_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-api-secret
+                  key: secret-key
+            - name: AKER_DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-api-secret
+                  key: database-url
+            - name: AKER_LANGUAGE_CODE
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-api-cm
+                  key: language-code
+            - name: AKER_TIME_ZONE
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-api-cm
+                  key: timezone
+            - name: AKER_STATIC_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-api-cm
+                  key: static-url
+            - name: AKER_STATIC_ROOT
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-api-cm
+                  key: static-root
+            - name: AKER_DEFAULT_PAGE_SIZE
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-api-cm
+                  key: default-page-size
+            - name: AKER_ENABLE_BROWSABLE_API
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-api-cm
+                  key: enable-browsable-api
+            - name: AKER_ALLOWED_HOSTS
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-api-cm
+                  key: allowed-hosts
+
+            - name: SUPER_USER_FIRST_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-api-cm
+                  key: super-user-first-name
+            - name: SUPER_USER_LAST_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-api-cm
+                  key: super-user-last-name
+            - name: SUPER_USER_EMAIL
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-api-cm
+                  key: super-user-email
+            - name: SUPER_USER_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-api-cm
+                  key: super-user-name
+            - name: SUPER_USER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-api-secret
+                  key: super-user-password
+            
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-api
+  namespace: {{ .Release.Namespace }}
+spec:
+  type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000

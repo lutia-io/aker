@@ -5,7 +5,6 @@
 ## Requirements
 
 - Python 3.12
-- Docker
 
 ## Setup
 
@@ -21,10 +20,9 @@
 - Clone this repository using git clone:
   - `git clone git@github.com:lutia-io/aker.git`
   - `cd aker`
-- Create a new `.env` file and paste the bare minimum key/values needed. You can view all the available environment variables [here](docs/environment.md).
+- Create a new `skaffold.env` file and paste the bare minimum key/values needed. You can view all the available environment variables [here](docs/environment.md).
 
     ```
-    #!/bin/bash
     AKER_DEBUG=true
     ```
 

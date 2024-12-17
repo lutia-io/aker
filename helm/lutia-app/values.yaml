@@ -1,0 +1,12 @@
+api:
+  replicas: 1
+  image:
+    repository: aker
+    tag: latest
+    pullPolicy: IfNotPresent
+
+postgresql:
+  auth:
+    database: aker_db
+    username: db_user
+    password: db_password

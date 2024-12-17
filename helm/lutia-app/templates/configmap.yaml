@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-api-cm
+  namespace: {{ .Release.Namespace }}
+  labels:
+    release: {{ .Release.Name }}
+data:
+  debug: {{ .Values.api.env.debug | quote }}
+  language-code: {{ .Values.api.env.languageCode | quote }}
+  timezone: {{ .Values.api.env.timezone | quote }}
+  static-url: {{ .Values.api.env.staticUrl | quote }}
+  static-root: {{ .Values.api.env.staticRoot | quote }}
+  allowed-hosts: {{ .Values.api.env.allowedHosts | quote }}
+  enable-browsable-api: {{ .Values.api.env.enableBrowsableApi | quote }}
+  default-page-size: {{ .Values.api.env.defaultPageSize | quote }}
+
+  super-user-first-name: {{ .Values.api.env.superUserFirstName | quote }}
+  super-user-last-name: {{ .Values.api.env.superUserLastName | quote }}
+  super-user-email: {{ .Values.api.env.superUserEmail | quote }}
+  super-user-name: {{ .Values.api.env.superUserName | quote }}

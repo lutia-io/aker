@@ -1,0 +1,45 @@
+apiVersion: skaffold/v4beta11
+kind: Config
+metadata:
+  name: lutia-app
+build:
+  artifacts:
+    - image: api
+      docker:
+        dockerfile: Dockerfile
+deploy:
+  helm:
+    releases:
+      - name: lutia
+        chartPath: ./helm/lutia-app
+        namespace: "{{.NAMESPACE}}"
+        createNamespace: true
+        skipBuildDependencies: true
+        setValueTemplates:
+          api.image.repository: "{{.IMAGE_REPO_api}}"
+          api.image.tag: "{{.IMAGE_TAG_api}}@{{.IMAGE_DIGEST_api}}"
+          
+          api.env.debug: "{{.AKER_DEBUG}}"
+          api.env.secretKey: "{{.AKER_SECRET_KEY}}"
+          api.env.allowedHosts: "{{.AKER_ALLOWED_HOSTS}}"
+          api.env.databaseUrl: "{{.AKER_DATABASE_URL}}"
+          api.env.languageCode: "{{.AKER_LANGUAGE_CODE}}"
+          api.env.timezone: "{{.AKER_TIME_ZONE}}"
+          api.env.staticUrl: "{{.AKER_STATIC_URL}}"
+          api.env.staticRoot: "{{.AKER_STATIC_ROOT}}"
+          api.env.enableBrowsableApi: "{{.AKER_ENABLE_BROWSABLE_API}}"
+          api.env.defaultPageSize: "{{.AKER_DEFAULT_PAGE_SIZE}}"
+          
+          api.env.superUserFirstName: "{{.SUPER_USER_FIRST_NAME}}"
+          api.env.superUserLastName: "{{.SUPER_USER_LAST_NAME}}"
+          api.env.superUserEmail: "{{.SUPER_USER_EMAIL}}"
+          api.env.superUserName: "{{.SUPER_USER_NAME}}"
+          api.env.superUserPassword: "{{.SUPER_USER_PASSWORD}}"
+
+
+portForward:
+  - resourceType: service
+    resourceName: lutia-api
+    namespace: "{{.NAMESPACE}}"
+    port: 8000
+    localPort: 8000
