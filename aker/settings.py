@@ -21,7 +21,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "drf_standardized_errors",
+    "django_filters",
     "core.apps.CoreConfig",
+    "policy.apps.PolicyConfig",
     "organization.apps.OrganizationConfig",
 ]
 
@@ -52,6 +54,10 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
 ]
 
 WSGI_APPLICATION = "aker.wsgi.application"

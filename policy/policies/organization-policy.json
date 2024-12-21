@@ -1,0 +1,14 @@
+[
+  {
+    "action": [
+      "list",
+      "retrieve"
+    ],
+    "effect": "allow",
+    "principal": [
+      "admin",
+      "staff",
+      "authenticated"
+    ]
+  }
+]
