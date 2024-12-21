@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "drf_standardized_errors",
     "core.apps.CoreConfig",
     "organization.apps.OrganizationConfig",
 ]
@@ -114,6 +115,9 @@ REST_FRAMEWORK = {
     "EXCEPTION_HANDLER": "drf_standardized_errors.handler.exception_handler",
 }
 
+DRF_STANDARDIZED_ERRORS = {
+    "EXCEPTION_HANDLER_CLASS": "core.exceptions.ExceptionHandler"
+}
 
 STORAGES = {
     "staticfiles": {
