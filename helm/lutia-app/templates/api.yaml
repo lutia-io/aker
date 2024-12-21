@@ -44,11 +44,6 @@ spec:
                 configMapKeyRef:
                   name: {{ .Release.Name }}-api-cm
                   key: timezone
-            - name: AKER_STATIC_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ .Release.Name }}-api-cm
-                  key: static-url
             - name: AKER_STATIC_ROOT
               valueFrom:
                 configMapKeyRef:

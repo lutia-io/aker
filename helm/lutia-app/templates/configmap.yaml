@@ -9,7 +9,6 @@ data:
   debug: {{ .Values.api.env.debug | quote }}
   language-code: {{ .Values.api.env.languageCode | quote }}
   timezone: {{ .Values.api.env.timezone | quote }}
-  static-url: {{ .Values.api.env.staticUrl | quote }}
   static-root: {{ .Values.api.env.staticRoot | quote }}
   allowed-hosts: {{ .Values.api.env.allowedHosts | quote }}
   enable-browsable-api: {{ .Values.api.env.enableBrowsableApi | quote }}

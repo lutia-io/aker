@@ -19,12 +19,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
     "core.apps.CoreConfig",
     "organization.apps.OrganizationConfig",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -74,14 +76,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LANGUAGE_CODE = env("LANGUAGE_CODE")
 TIME_ZONE = env("TIME_ZONE")
 USE_I18N = True
 USE_TZ = True
-STATIC_URL = env("STATIC_URL")
+
+STATIC_URL = "/static/"
 STATIC_ROOT = env("STATIC_ROOT")
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+if not STATIC_ROOT:
+    STATIC_ROOT = BASE_DIR / "staticfiles"
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
@@ -108,4 +112,11 @@ REST_FRAMEWORK = {
         else []
     ),
     "EXCEPTION_HANDLER": "drf_standardized_errors.handler.exception_handler",
+}
+
+
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
 }

@@ -25,7 +25,6 @@ deploy:
           api.env.databaseUrl: "{{.AKER_DATABASE_URL}}"
           api.env.languageCode: "{{.AKER_LANGUAGE_CODE}}"
           api.env.timezone: "{{.AKER_TIME_ZONE}}"
-          api.env.staticUrl: "{{.AKER_STATIC_URL}}"
           api.env.staticRoot: "{{.AKER_STATIC_ROOT}}"
           api.env.enableBrowsableApi: "{{.AKER_ENABLE_BROWSABLE_API}}"
           api.env.defaultPageSize: "{{.AKER_DEFAULT_PAGE_SIZE}}"
