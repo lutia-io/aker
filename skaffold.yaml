@@ -29,8 +29,6 @@ deploy:
           api.env.enableBrowsableApi: "{{.AKER_ENABLE_BROWSABLE_API}}"
           api.env.defaultPageSize: "{{.AKER_DEFAULT_PAGE_SIZE}}"
           
-          api.env.superUserFirstName: "{{.SUPER_USER_FIRST_NAME}}"
-          api.env.superUserLastName: "{{.SUPER_USER_LAST_NAME}}"
           api.env.superUserEmail: "{{.SUPER_USER_EMAIL}}"
           api.env.superUserName: "{{.SUPER_USER_NAME}}"
           api.env.superUserPassword: "{{.SUPER_USER_PASSWORD}}"

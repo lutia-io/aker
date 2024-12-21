@@ -4,9 +4,11 @@
 
 ## Requirements
 
-- Python 3.12
+- Python 3.12.3
+- Kind 0.24.0
+- Skaffold 2.13.2
 
-## Setup
+## Setup & Run
 
 - Create a new main project folder anywhere you like
   - `mkdir aker-project`
@@ -22,20 +24,14 @@
   - `cd aker`
 - Create a new `skaffold.env` file and paste the bare minimum key/values needed. You can view all the available environment variables [here](docs/environment.md).
 
-    ```
+    ```bash
     AKER_DEBUG=true
     ```
 
 - Install the library dependencies
   - `pip install -r requirements.txt`
-- Run the service dependencies
-  - `docker compose up -d`
-- Execute the migrations & run the API
-  - `python manage.py makemigrations`
-  - `python manage.py migrate`
-  - `python manage.py runserver`
-
-Furthermore, after setting up your environment, please continue to setup your API with your App [here](docs/setup.md).
+- Release Lutia platform
+  - `skaffold dev`
 
 ## Tests
 
@@ -48,10 +44,3 @@ Furthermore, after setting up your environment, please continue to setup your AP
 - If you want to see the coverage results with red/green diff, you can open a browser tool:
   - `coverage html`
 - Open the generated HTML file located in `htmlcov/index.html` in a browser with absolute path
-
-## Docker (locally)
-
-- You need to build the docker image using the following command:
-  - `docker build -t aker .`
-- Run the newly created docker image
-  - `docker run --env-file .env -p 8000:8000 -d aker:latest`

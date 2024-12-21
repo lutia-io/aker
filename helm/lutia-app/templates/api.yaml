@@ -65,16 +65,6 @@ spec:
                   name: {{ .Release.Name }}-api-cm
                   key: allowed-hosts
 
-            - name: SUPER_USER_FIRST_NAME
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ .Release.Name }}-api-cm
-                  key: super-user-first-name
-            - name: SUPER_USER_LAST_NAME
-              valueFrom:
-                configMapKeyRef:
-                  name: {{ .Release.Name }}-api-cm
-                  key: super-user-last-name
             - name: SUPER_USER_EMAIL
               valueFrom:
                 configMapKeyRef:

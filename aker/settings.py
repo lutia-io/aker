@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     "django_filters",
     "core.apps.CoreConfig",
     "policy.apps.PolicyConfig",
+    "user.apps.UserConfig",
     "organization.apps.OrganizationConfig",
 ]
 
@@ -93,6 +94,8 @@ STATIC_URL = "/static/"
 STATIC_ROOT = env("STATIC_ROOT")
 if not STATIC_ROOT:
     STATIC_ROOT = BASE_DIR / "staticfiles"
+
+AUTH_USER_MODEL = "user.User"
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [

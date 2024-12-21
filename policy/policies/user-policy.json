@@ -1,0 +1,29 @@
+[
+  {
+    "action": [
+      "list",
+      "create",
+      "retrieve",
+      "me",
+      "profile_form"
+    ],
+    "effect": "allow",
+    "principal": [
+      "admin",
+      "staff",
+      "authenticated"
+    ]
+  },
+  {
+    "action": [
+      "partial_update"
+    ],
+    "condition": "is_owner",
+    "effect": "allow",
+    "principal": [
+      "admin",
+      "staff",
+      "authenticated"
+    ]
+  }
+]
