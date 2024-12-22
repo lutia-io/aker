@@ -8,5 +8,6 @@ admin.site.site_title = "Lutia"
 urlpatterns = [
     path("organizations/", include("organization.urls", namespace="organization")),
     path("users/", include("user.urls", namespace="user")),
+    path("schemas/", include("schema.urls", namespace="schema")),
     path("configurator/", admin.site.urls),
 ]

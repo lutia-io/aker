@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     "policy.apps.PolicyConfig",
     "user.apps.UserConfig",
     "organization.apps.OrganizationConfig",
+    "schema.apps.SchemaConfig",
 ]
 
 MIDDLEWARE = [
