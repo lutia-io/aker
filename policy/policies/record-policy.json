@@ -1,0 +1,16 @@
+[
+  {
+    "action": [
+      "list",
+      "retrieve",
+      "create",
+      "partial_update"
+    ],
+    "effect": "allow",
+    "principal": [
+      "admin",
+      "staff",
+      "authenticated"
+    ]
+  }
+]

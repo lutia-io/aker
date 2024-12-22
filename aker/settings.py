@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "user.apps.UserConfig",
     "organization.apps.OrganizationConfig",
     "schema.apps.SchemaConfig",
+    "record.apps.RecordConfig",
 ]
 
 MIDDLEWARE = [
