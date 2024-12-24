@@ -3,7 +3,7 @@ from django.db import models
 from user.models import User
 from organization.models import Organization
 from django.core.exceptions import ValidationError
-from jsonschema import Draft202012Validator, exceptions as jsonschema_exceptions
+from schema.validators.validator import Validator
 
 
 class Schema(BaseModel):
@@ -27,9 +27,12 @@ class Schema(BaseModel):
 
     def clean(self):
         try:
-            Draft202012Validator.check_schema(self.definition)
-        except jsonschema_exceptions.SchemaError as e:
-            raise ValidationError(f"Your definition is an invalid JSON Schema: {e.message}")
+            validator = Validator()
+            validator.validate_schema(self.definition)
+        except ValueError as e:
+            raise ValidationError(
+                f"Your definition is an invalid JSON Schema: {str(e)}"
+            )
         super().clean()
 
     def save(self, *args, **kwargs):

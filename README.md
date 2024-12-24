@@ -33,6 +33,11 @@
 - Release Lutia platform
   - `skaffold dev`
 
+## Installing pip packages
+
+- If you would like to use an external library; after installing it, please ensure to freeze it to `requirements.txt`
+  - `pip freeze > requirements.txt`
+
 ## Tests
 
 - Run the tests using Django:

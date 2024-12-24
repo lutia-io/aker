@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from record.models import Record
-from jsonschema import validate, ValidationError as JSONSchemaValidationError
+from schema.validators.validator import Validator
 
 
 class RecordSerializer(serializers.ModelSerializer):
@@ -29,15 +29,15 @@ class RecordSerializer(serializers.ModelSerializer):
         ]
 
     def validate_data(self, value):
-        """Validate the JSON data against the schema definition."""
         schema = (
             self.instance.schema if self.instance else self.initial_data.get("schema")
         )
         if schema:
             try:
-                validate(instance=value, schema=schema.definition)
-            except JSONSchemaValidationError as e:
+                validator = Validator()
+                validator.validate(schema.definition, value)
+            except Exception as e:
                 raise serializers.ValidationError(
-                    f"Invalid data for schema {schema.name}: {e.message}"
+                    f"Invalid data for schema {schema.name}: {str(e)}"
                 )
         return value

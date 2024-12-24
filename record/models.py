@@ -4,7 +4,7 @@ from user.models import User
 from organization.models import Organization
 from schema.models import Schema
 from django.core.exceptions import ValidationError
-from jsonschema import validate, ValidationError as JSONSchemaValidationError
+from schema.validators.validator import Validator
 
 
 class Record(BaseModel):
@@ -19,13 +19,14 @@ class Record(BaseModel):
         return str(self.uuid)
 
     def clean(self):
-        """Validate the JSON data against the associated schema definition."""
         try:
-            validate(instance=self.data, schema=self.schema.definition)
-        except JSONSchemaValidationError as e:
+            validator = Validator()
+            validator.validate(self.schema.definition, self.data)
+        except Exception as e:
             raise ValidationError(
-                f"Invalid data for schema {self.schema.name}: {e.message}"
+                f"Invalid data for schema {self.schema.name}: {str(e)}"
             )
+        super().clean()
 
     def save(self, *args, **kwargs):
         self.clean()
