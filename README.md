@@ -5,7 +5,9 @@
 ## Requirements
 
 - Python 3.12.3
+- Kubernetes 1.31.0
 - Kind 0.24.0
+- Helm 3.15.4
 - Skaffold 2.13.2
 
 ## Setup & Run
@@ -35,7 +37,7 @@
 
 ## Installing pip packages
 
-- If you would like to use an external library; after installing it, please ensure to freeze it to `requirements.txt`
+- Ffter installing an external package, please ensure to freeze the pinned package to `requirements.txt`
   - `pip freeze > requirements.txt`
 
 ## Tests

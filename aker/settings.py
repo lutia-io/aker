@@ -1,30 +1,45 @@
 from pathlib import Path
 import environ
 
+# ============================
+# Environment Configuration
+# ============================
 env = environ.FileAwareEnv(
     AKER_ALLOWED_HOSTS=(list, []),
 )
 env.prefix = "AKER_"
 
+# =======================
+# Project Base Directory
+# =======================
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# ===========================
+# Security and Debug Settings
+# ===========================
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
 ALLOWED_HOSTS = env("ALLOWED_HOSTS")
 
+# =======================
+# Installed Applications
+# =======================
 INSTALLED_APPS = [
+    # Default Django apps
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Third-party apps
     "rest_framework",
     "drf_standardized_errors",
     "django_filters",
     "oauth2_provider",
     "social_django",
     "drf_social_oauth2",
+    # Project-specific apps
     "core.apps.CoreConfig",
     "policy.apps.PolicyConfig",
     "user.apps.UserConfig",
@@ -33,6 +48,9 @@ INSTALLED_APPS = [
     "record.apps.RecordConfig",
 ]
 
+# ===================
+# Middleware Settings
+# ===================
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -44,8 +62,15 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# ===================
+# URL and WSGI Config
+# ===================
 ROOT_URLCONF = "aker.urls"
+WSGI_APPLICATION = "aker.wsgi.application"
 
+# ====================
+# Template Configuration
+# ====================
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -62,19 +87,25 @@ TEMPLATES = [
     },
 ]
 
+# =======================
+# Authentication Settings
+# =======================
 AUTHENTICATION_BACKENDS = [
     "drf_social_oauth2.backends.DjangoOAuth2",
     "django.contrib.auth.backends.ModelBackend",
 ]
+AUTH_USER_MODEL = "user.User"
 
-WSGI_APPLICATION = "aker.wsgi.application"
-
-
+# ===========================
+# Database Configuration
+# ===========================
 DATABASES = {
     "default": env.db(),
 }
 
-
+# ============================
+# Password Validation Settings
+# ============================
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -90,19 +121,23 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+# ========================
+# Internationalization
+# ========================
 LANGUAGE_CODE = env("LANGUAGE_CODE")
 TIME_ZONE = env("TIME_ZONE")
 USE_I18N = True
 USE_TZ = True
 
+# =======================
+# Static Files Settings
+# =======================
 STATIC_URL = "/static/"
-STATIC_ROOT = env("STATIC_ROOT")
-if not STATIC_ROOT:
-    STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = env("STATIC_ROOT") or BASE_DIR / "staticfiles"
 
-AUTH_USER_MODEL = "user.User"
-
+# ======================
+# REST Framework Settings
+# ======================
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
@@ -132,12 +167,23 @@ REST_FRAMEWORK = {
     "EXCEPTION_HANDLER": "drf_standardized_errors.handler.exception_handler",
 }
 
+# ==========================
+# Standardized Error Handling
+# ==========================
 DRF_STANDARDIZED_ERRORS = {
     "EXCEPTION_HANDLER_CLASS": "core.exceptions.ExceptionHandler"
 }
 
+# =======================
+# Static File Storage
+# =======================
 STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+# ============================
+# Django Default Configurations
+# ============================
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
