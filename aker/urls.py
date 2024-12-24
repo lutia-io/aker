@@ -6,6 +6,7 @@ admin.site.index_title = "Configurator"
 admin.site.site_title = "Lutia"
 
 urlpatterns = [
+    path("auth/", include("drf_social_oauth2.urls", namespace="drf")),
     path("organizations/", include("organization.urls", namespace="organization")),
     path("users/", include("user.urls", namespace="user")),
     path("schemas/", include("schema.urls", namespace="schema")),
