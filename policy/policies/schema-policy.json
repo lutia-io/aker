@@ -2,9 +2,7 @@
   {
     "action": [
       "list",
-      "retrieve",
-      "create",
-      "partial_update"
+      "retrieve"
     ],
     "effect": "allow",
     "principal": [

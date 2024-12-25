@@ -6,6 +6,8 @@ metadata:
   labels:
     release: {{ .Release.Name }}
 data:
+  # Application configuration
+  admin-site-title: {{ .Values.api.env.adminSiteTitle | quote }}
   debug: {{ .Values.api.env.debug | quote }}
   language-code: {{ .Values.api.env.languageCode | quote }}
   timezone: {{ .Values.api.env.timezone | quote }}
@@ -14,5 +16,6 @@ data:
   enable-browsable-api: {{ .Values.api.env.enableBrowsableApi | quote }}
   default-page-size: {{ .Values.api.env.defaultPageSize | quote }}
 
+  # Superuser credentials
   super-user-email: {{ .Values.api.env.superUserEmail | quote }}
   super-user-name: {{ .Values.api.env.superUserName | quote }}

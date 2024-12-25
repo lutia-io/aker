@@ -4,7 +4,7 @@ import environ
 # ============================
 # Environment Configuration
 # ============================
-env = environ.FileAwareEnv(
+env = environ.Env(
     AKER_ALLOWED_HOSTS=(list, []),
 )
 env.prefix = "AKER_"
@@ -13,6 +13,11 @@ env.prefix = "AKER_"
 # Project Base Directory
 # =======================
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# =======================
+# Aker Application Settings
+# =======================
+ADMIN_SITE_TITLE = env("ADMIN_SITE_TITLE")
 
 # ===========================
 # Security and Debug Settings

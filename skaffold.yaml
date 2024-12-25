@@ -19,6 +19,7 @@ deploy:
           api.image.repository: "{{.IMAGE_REPO_api}}"
           api.image.tag: "{{.IMAGE_TAG_api}}@{{.IMAGE_DIGEST_api}}"
           
+          api.env.adminSiteTitle: "{{.AKER_ADMIN_SITE_TITLE}}"
           api.env.debug: "{{.AKER_DEBUG}}"
           api.env.secretKey: "{{.AKER_SECRET_KEY}}"
           api.env.allowedHosts: "{{.AKER_ALLOWED_HOSTS}}"

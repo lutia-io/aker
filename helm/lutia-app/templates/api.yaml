@@ -19,21 +19,12 @@ spec:
           ports:
             - containerPort: 8000
           env:
+            # Environment variables from ConfigMap
             - name: AKER_DEBUG
               valueFrom:
                 configMapKeyRef:
                   name: {{ .Release.Name }}-api-cm
                   key: debug
-            - name: AKER_SECRET_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-api-secret
-                  key: secret-key
-            - name: AKER_DATABASE_URL
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Release.Name }}-api-secret
-                  key: database-url
             - name: AKER_LANGUAGE_CODE
               valueFrom:
                 configMapKeyRef:
@@ -64,7 +55,11 @@ spec:
                 configMapKeyRef:
                   name: {{ .Release.Name }}-api-cm
                   key: allowed-hosts
-
+            - name: AKER_ADMIN_SITE_TITLE
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-api-cm
+                  key: admin-site-title
             - name: SUPER_USER_EMAIL
               valueFrom:
                 configMapKeyRef:
@@ -75,12 +70,23 @@ spec:
                 configMapKeyRef:
                   name: {{ .Release.Name }}-api-cm
                   key: super-user-name
+
+            # Environment variables from Secret
+            - name: AKER_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-api-secret
+                  key: secret-key
+            - name: AKER_DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-api-secret
+                  key: database-url
             - name: SUPER_USER_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: {{ .Release.Name }}-api-secret
                   key: super-user-password
-            
 
 ---
 apiVersion: v1

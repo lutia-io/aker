@@ -51,8 +51,7 @@ class Validator:
         )
 
     def validate(self, schema, data):
-        validator = self.validator(schema)
-        validator.validate(data)
+        self.validator(schema).validate(data)
 
     def validate_schema(self, schema):
         try:

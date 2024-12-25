@@ -12,11 +12,13 @@ class RecordViewSet(ModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_class = RecordFilter
     permission_classes = [RecordPolicy]
-    http_method_names = ["get", "post", "patch"]
+    http_method_names = ["get"]
     ordering = ["-pk"]
     lookup_field = "uuid"
+    
+    @property
+    def access_policy(self):
+        return self.permission_classes[0]
 
-    def perform_create(self, serializer):
-        serializer.save(
-            user=self.request.user, organization=self.request.user.organization
-        )
+    def get_queryset(self):
+        return self.access_policy.scope_queryset(self.request, self.queryset)
