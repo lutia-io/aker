@@ -4,3 +4,4 @@ htmlcov
 static/
 __pycache__/
 .ruff_cache
+build-artifacts.json

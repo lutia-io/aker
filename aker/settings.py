@@ -188,7 +188,7 @@ STORAGES = {
     },
 }
 
-# ============================
-# Django Default Configurations
-# ============================
+# ==============================
+# Django Specific Configurations
+# ==============================
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

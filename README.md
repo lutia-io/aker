@@ -37,5 +37,12 @@
 
 ## Installing pip packages
 
-- Ffter installing an external package, please ensure to freeze the pinned package to `requirements.txt`
+- After installing an external package, please ensure to freeze the pinned package to `requirements.txt`
   - `pip freeze > requirements.txt`
+
+## Tests
+
+- Build image using skaffold
+  - `skaffold build --file-output build-artifacts.json`
+- Use built artifact (image) to execute tests
+  - `skaffold test --build-artifacts=build-artifacts.json`

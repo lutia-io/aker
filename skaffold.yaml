@@ -7,6 +7,13 @@ build:
     - image: api
       docker:
         dockerfile: Dockerfile
+test:
+  - image: api
+    custom:
+      - command: ./test.sh
+        dependencies:
+          paths:
+          - "test.sh"
 deploy:
   helm:
     releases:
@@ -33,8 +40,6 @@ deploy:
           api.env.superUserEmail: "{{.SUPER_USER_EMAIL}}"
           api.env.superUserName: "{{.SUPER_USER_NAME}}"
           api.env.superUserPassword: "{{.SUPER_USER_PASSWORD}}"
-
-
 portForward:
   - resourceType: service
     resourceName: lutia-api
