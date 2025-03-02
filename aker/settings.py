@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Third-party apps
     "rest_framework",
-    "drf_standardized_errors",
     "django_filters",
     "oauth2_provider",
     "social_django",
@@ -50,7 +49,7 @@ INSTALLED_APPS = [
     "user.apps.UserConfig",
     "organization.apps.OrganizationConfig",
     "schema.apps.SchemaConfig",
-    "record.apps.RecordConfig",
+    "field.apps.FieldConfig",
 ]
 
 # ===================
@@ -169,15 +168,8 @@ REST_FRAMEWORK = {
         if env("ENABLE_BROWSABLE_API")
         else []
     ),
-    "EXCEPTION_HANDLER": "drf_standardized_errors.handler.exception_handler",
 }
 
-# ==========================
-# Standardized Error Handling
-# ==========================
-DRF_STANDARDIZED_ERRORS = {
-    "EXCEPTION_HANDLER_CLASS": "core.exceptions.ExceptionHandler"
-}
 
 # =======================
 # Static File Storage
