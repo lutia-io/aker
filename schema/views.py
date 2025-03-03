@@ -15,7 +15,6 @@ class SchemaViewSet(viewsets.ModelViewSet):
     http_method_names = ["get"]
     lookup_field = "uuid"
     search_fields = ["uuid", "name", "slug", "active"]
-    ordering = ["-id"]
 
     @property
     def access_policy(self):
