@@ -12,17 +12,7 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = [UserPolicy]
     filterset_class = UserFilter
-    ordering = ["-pk"]
-    search_fields = ["id", "uuid", "username", "first_name", "last_name", "email"]
-    ordering_fields = [
-        "id",
-        "uuid",
-        "username",
-        "first_name",
-        "last_name",
-        "email",
-        "date_joined",
-    ]
+    search_fields = ["uuid", "username", "first_name", "last_name", "email"]
     http_method_names = ["get"]
     lookup_field = "uuid"
 
