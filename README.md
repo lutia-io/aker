@@ -16,7 +16,7 @@
   - `mkdir aker-project`
   - `cd aker-project`
 - Setup a virtual environment using the following command:
-  - `python3.12 -m venv aker-env`
+  - `python3 -m venv aker-env`
 - Activate the virtual environment using the following command:
   - `source aker-env/bin/activate`
   - You should now see your terminal like:

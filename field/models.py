@@ -44,9 +44,7 @@ class FieldOption(BaseModel):
     name = models.CharField(max_length=255)
     label = models.CharField(max_length=255)
     sort = models.PositiveIntegerField()
-    field = models.ForeignKey(
-        Field, on_delete=models.CASCADE, related_name="options", blank=False, null=False
-    )
+    field = models.ForeignKey(Field, on_delete=models.CASCADE, related_name="options")
 
     class Meta:
         ordering = ("sort",)

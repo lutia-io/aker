@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "organization.apps.OrganizationConfig",
     "schema.apps.SchemaConfig",
     "field.apps.FieldConfig",
+    "record.apps.RecordConfig",
 ]
 
 # ===================
@@ -152,6 +153,7 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": env("DEFAULT_PAGE_SIZE"),
     "PAGINATE_BY_PARAM": "page_size",
     "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
         "rest_framework.filters.SearchFilter",
         "rest_framework.filters.OrderingFilter",
     ],
