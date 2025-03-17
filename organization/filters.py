@@ -5,4 +5,4 @@ from organization.models import Organization
 class OrganizationFilter(filters.FilterSet):
     class Meta:
         model = Organization
-        fields = ["uuid", "created_at", "updated_at", "name", "slug"]
+        fields = ["id", "uuid", "created_at", "updated_at", "name", "slug", "user"]
