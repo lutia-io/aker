@@ -7,15 +7,14 @@ from schema.filters import SchemaFilter
 
 
 class SchemaViewSet(viewsets.ModelViewSet):
-    queryset = Schema.objects.all()
+    queryset = Schema.objects.all().order_by('-id')
     serializer_class = SchemaSerializer
     permission_classes = [SchemaPolicy]
     filter_backends = [DjangoFilterBackend]
     filterset_class = SchemaFilter
     http_method_names = ["get"]
     lookup_field = "uuid"
-    search_fields = ["uuid", "name", "slug"]
-    ordering = ["-pk"]
+    search_fields = ["uuid", "name", "slug", "active"]
 
     @property
     def access_policy(self):

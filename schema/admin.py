@@ -1,15 +1,23 @@
 from django.contrib import admin
 from schema.models import Schema
-from schema.forms import SchemaChangeForm
+from field.models import Field
+
+
+class FieldInline(admin.TabularInline):
+    model = Field
+    extra = 1
+    autocomplete_fields = ["user", "organization"]
+    show_change_link = True
+    can_delete = False
 
 
 class SchemaAdmin(admin.ModelAdmin):
-    list_display = ("name", "slug", "user", "organization", "created_at", "updated_at")
-    search_fields = ("name", "slug", "user", "organization")
-    list_filter = ("organization",)
+    list_display = ("name", "slug", "active", "user", "organization")
+    list_filter = ("active", "organization")
+    search_fields = ("name", "slug", "user__email", "organization__name")
+    ordering = ("name",)
     prepopulated_fields = {"slug": ("name",)}
-    raw_id_fields = ("user", "organization")
-    form = SchemaChangeForm
+    inlines = [FieldInline]
 
 
 admin.site.register(Schema, SchemaAdmin)

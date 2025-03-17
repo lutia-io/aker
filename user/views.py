@@ -8,7 +8,7 @@ from rest_framework.response import Response
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.filter()
+    queryset = User.objects.filter(is_staff=False)
     serializer_class = UserSerializer
     permission_classes = [UserPolicy]
     filterset_class = UserFilter
@@ -26,13 +26,7 @@ class UserViewSet(viewsets.ModelViewSet):
     http_method_names = ["get"]
     lookup_field = "uuid"
 
-    @action(
-        methods=["get"],
-        detail=True,
-        serializer_class=UserSerializer,
-        queryset=User.objects.filter(),
-        name="Me",
-    )
+    @action(methods=["get"], detail=True)
     def me(self, request):
         serializer = UserSerializer(request.user)
         return Response(serializer.data)

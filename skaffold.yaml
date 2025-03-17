@@ -2,18 +2,13 @@ apiVersion: skaffold/v4beta11
 kind: Config
 metadata:
   name: lutia-app
+
 build:
   artifacts:
     - image: api
       docker:
         dockerfile: Dockerfile
-test:
-  - image: api
-    custom:
-      - command: ./test.sh
-        dependencies:
-          paths:
-          - "test.sh"
+
 deploy:
   helm:
     releases:
@@ -40,9 +35,26 @@ deploy:
           api.env.superUserEmail: "{{.SUPER_USER_EMAIL}}"
           api.env.superUserName: "{{.SUPER_USER_NAME}}"
           api.env.superUserPassword: "{{.SUPER_USER_PASSWORD}}"
+
 portForward:
   - resourceType: service
     resourceName: lutia-api
     namespace: "{{.NAMESPACE}}"
     port: 8000
     localPort: 8000
+
+profiles:
+  - name: development
+    activation:
+      - command: dev
+    test: []
+  - name: testing
+    activation:
+      - command: test
+    test:
+      - image: api
+        custom:
+          - command: ./test.sh
+            dependencies:
+              paths:
+                - "test.sh"

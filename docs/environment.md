@@ -6,7 +6,7 @@ This document lists all the environment variables used in the application along 
 
 | **Variable**                       | **Type** | **Default**    | **Description**                                                                 |
 |------------------------------------|----------|----------------|---------------------------------------------------------------------------------|
-| `AKER_DEBUG`                       | `bool`   | `N/A`          | Enables or disables Django's debug mode.                                       |
+| `AKER_DEBUG`                       | `bool`   | `N/A`          | Enables or disables Django's debug mode.                                        |
 
 ---
 

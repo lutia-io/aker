@@ -1,12 +1,12 @@
 from core.policy import BaseAccessPolicy
 
 
-class SchemaPolicy(BaseAccessPolicy):
-    slug = "schema-policy"
+class FieldPolicy(BaseAccessPolicy):
+    slug = "field-policy"
 
     def is_owner(self, request, view, action):
-        schema = view.get_object()
-        return request.user == schema.user
+        field = view.get_object()
+        return request.user == field.user
 
     @classmethod
     def scope_queryset(cls, request, qs):

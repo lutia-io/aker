@@ -4,7 +4,9 @@ from record.forms import RecordChangeForm
 
 
 class RecordAdmin(admin.ModelAdmin):
+    form = RecordChangeForm
     list_display = (
+        "id",
         "uuid",
         "schema",
         "user",
@@ -12,14 +14,9 @@ class RecordAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     )
-    search_fields = ("uuid", "schema__name", "user__username", "organization__name")
-    list_filter = ("schema", "organization", "created_at")
-    form = RecordChangeForm
+    search_fields = ("uuid", "schema__name", "user", "organization")
+    list_filter = ("created_at", "updated_at", "schema", "organization")
     raw_id_fields = ("schema", "user", "organization")
-
-    def get_queryset(self, request):
-        queryset = super().get_queryset(request)
-        return queryset.select_related("schema", "user", "organization")
 
 
 admin.site.register(Record, RecordAdmin)

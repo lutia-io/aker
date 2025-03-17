@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Third-party apps
     "rest_framework",
-    "drf_standardized_errors",
     "django_filters",
     "oauth2_provider",
     "social_django",
@@ -50,6 +49,7 @@ INSTALLED_APPS = [
     "user.apps.UserConfig",
     "organization.apps.OrganizationConfig",
     "schema.apps.SchemaConfig",
+    "field.apps.FieldConfig",
     "record.apps.RecordConfig",
 ]
 
@@ -153,6 +153,7 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": env("DEFAULT_PAGE_SIZE"),
     "PAGINATE_BY_PARAM": "page_size",
     "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
         "rest_framework.filters.SearchFilter",
         "rest_framework.filters.OrderingFilter",
     ],
@@ -169,15 +170,8 @@ REST_FRAMEWORK = {
         if env("ENABLE_BROWSABLE_API")
         else []
     ),
-    "EXCEPTION_HANDLER": "drf_standardized_errors.handler.exception_handler",
 }
 
-# ==========================
-# Standardized Error Handling
-# ==========================
-DRF_STANDARDIZED_ERRORS = {
-    "EXCEPTION_HANDLER_CLASS": "core.exceptions.ExceptionHandler"
-}
 
 # =======================
 # Static File Storage

@@ -1,7 +1,8 @@
 [
   {
     "action": [
-      "me"
+      "list",
+      "retrieve"
     ],
     "effect": "allow",
     "principal": [
