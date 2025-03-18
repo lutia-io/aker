@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     "drf_social_oauth2",
     # Project-specific apps
     "core.apps.CoreConfig",
-    "policy.apps.PolicyConfig",
     "user.apps.UserConfig",
     "organization.apps.OrganizationConfig",
     "schema.apps.SchemaConfig",

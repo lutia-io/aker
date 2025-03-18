@@ -1,8 +1,14 @@
-from core.policy import BaseAccessPolicy
+from rest_access_policy import AccessPolicy
 
 
-class FieldPolicy(BaseAccessPolicy):
-    slug = "field-policy"
+class FieldPolicy(AccessPolicy):
+    statements = [
+        {
+            "action": ["list", "retrieve"],
+            "effect": "allow",
+            "principal": ["admin", "staff", "authenticated"],
+        }
+    ]
 
     def is_owner(self, request, view, action):
         field = view.get_object()
