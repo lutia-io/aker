@@ -5,4 +5,11 @@ from schema.models import Schema
 class SchemaFilter(filters.FilterSet):
     class Meta:
         model = Schema
-        fields = ["uuid", "created_at", "updated_at", "name", "slug", "active"]
+        fields = [
+            "uuid",
+            "created_at",
+            "updated_at",
+            "name",
+            "slug",
+            "active",
+        ]

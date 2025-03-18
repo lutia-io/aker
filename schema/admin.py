@@ -14,8 +14,7 @@ class FieldInline(admin.TabularInline):
 class SchemaAdmin(admin.ModelAdmin):
     list_display = ("name", "slug", "active", "user", "organization")
     list_filter = ("active", "organization")
-    search_fields = ("name", "slug", "user__email", "organization__name")
-    ordering = ("name",)
+    search_fields = ("name", "slug", "user", "organization")
     prepopulated_fields = {"slug": ("name",)}
     inlines = [FieldInline]
 

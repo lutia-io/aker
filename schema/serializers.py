@@ -6,7 +6,7 @@ from field.models import Field
 class FieldSerializer(serializers.ModelSerializer):
     class Meta:
         model = Field
-        fields = ["id", "uuid", "name", "label", "type", "created_at", "updated_at"]
+        fields = ["uuid", "name", "label", "type", "created_at", "updated_at"]
 
 
 class SchemaSerializer(serializers.ModelSerializer):
@@ -15,7 +15,6 @@ class SchemaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Schema
         fields = [
-            "id",
             "uuid",
             "name",
             "slug",

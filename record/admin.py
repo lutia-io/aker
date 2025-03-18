@@ -14,7 +14,7 @@ class RecordAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     )
-    search_fields = ("uuid", "schema__name", "user", "organization")
+    search_fields = ("uuid", "schema", "user", "organization")
     list_filter = ("created_at", "updated_at", "schema", "organization")
     raw_id_fields = ("schema", "user", "organization")
 
