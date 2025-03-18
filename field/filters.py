@@ -12,6 +12,4 @@ class FieldFilter(filters.FilterSet):
             "name",
             "label",
             "type",
-            "schema",
-            "user",
         ]

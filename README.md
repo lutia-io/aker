@@ -4,11 +4,11 @@
 
 ## Requirements
 
-- Python 3.12.3
-- Kubernetes 1.31.0
-- Kind 0.24.0
-- Helm 3.15.4
-- Skaffold 2.13.2
+- Python 3
+- Kubernetes
+- Kind
+- Helm
+- Skaffold
 
 ## Setup & Run
 

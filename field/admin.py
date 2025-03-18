@@ -4,15 +4,13 @@ from field.models import Field, FieldOption
 
 class FieldOptionInline(admin.TabularInline):
     model = FieldOption
-
     extra = 1
 
 
 class FieldAdmin(admin.ModelAdmin):
-    list_display = ("name", "label", "schema", "user", "organization")
+    list_display = ("name", "label", "type", "schema", "user", "organization")
     list_filter = ("organization", "schema")
-    search_fields = ("name", "label", "user__email", "organization__name")
-    ordering = ("name",)
+    search_fields = ("name", "label", "user", "organization")
     inlines = [FieldOptionInline]
 
 

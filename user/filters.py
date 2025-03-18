@@ -6,7 +6,6 @@ class UserFilter(filters.FilterSet):
     class Meta:
         model = User
         fields = [
-            "id",
             "uuid",
             "username",
             "first_name",
