@@ -12,5 +12,6 @@ urlpatterns = [
     path("users/", include("user.urls", namespace="user")),
     path("schemas/", include("schema.urls", namespace="schema")),
     path("fields/", include("field.urls", namespace="field")),
+    path("records/", include("record.urls", namespace="record")),
     path("configurator/", admin.site.urls),
 ]
